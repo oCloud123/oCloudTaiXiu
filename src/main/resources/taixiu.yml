@@ -1,0 +1,152 @@
+# Tài Xỉu độc lập. Tiền người chơi qua Vault/Essentials; nhà cái vô hạn.
+enabled: true
+style-version: 2
+
+round:
+  betting-seconds: 90
+  cooldown-seconds: 10
+  # Sau 10 phiên liên tiếp không có ai cược: vẫn gửi chat nhưng tắt sound mời.
+  # Chỉ cần có một cược thành công, bộ đếm reset và phiên sau có sound lại.
+  mute-invite-after-empty-rounds: 10
+
+bet:
+  minimum: 100000
+  # 0 = không giới hạn theo quỹ; chỉ giới hạn theo ví và phạm vi số an toàn.
+  maximum: 0
+  # Người thắng nhận: tiền cược * 2 - 10% tiền cược.
+  tax-percent: 10
+
+rules:
+  # 4-10 = Xỉu, 11-17 = Tài; mọi bộ ba nhà cái thắng.
+  triples-house-wins: true
+  # Tỷ lệ kết quả dài hạn khi bộ ba thắng cho nhà cái: Tài 40%, Xỉu 40%, bộ ba 20%.
+  # Ví dụ 1-1-1 hoặc 6-6-6 là bộ ba; cả hai cửa cược đều thua.
+  # Các số là trọng số tương đối, không bảo đảm đúng tỷ lệ trong từng nhóm 10 phiên.
+  outcome-weights:
+    tai: 40
+    xiu: 40
+    triple: 20
+
+history-display:
+  rounds: 20
+  lifetime-seconds: 60
+  max-distance: 10.0
+  # Khoảng cách và độ cao nơi cầu 3D xuất hiện trước mặt người chơi.
+  spawn-distance: 3.8
+  vertical-offset: 0.08
+  ticks-per-point: 4
+  close-animation-ticks: 8
+
+# Bàn cược 3D không có thời gian tự đóng; chỉ mất khi đi quá khoảng cách này,
+# teleport, đổi thế giới, chết, thoát hoặc chủ động đóng.
+betting-display:
+  max-distance: 10.0
+  # Khoảng cách và độ cao nơi bàn cược xuất hiện trước mặt người chơi.
+  spawn-distance: 4.1
+  vertical-offset: 0.08
+  # Các số dưới đây là công thức % theo số dư. Trên bàn 3D sẽ hiện số tiền thật đã tính, không hiện chữ 10%/25%.
+  # Ví dụ số dư 100m: [10, 25, 50] sẽ hiện thành 10M$, 25M$, 50M$.
+  smart-amounts:
+    percentages: [10, 25, 50]
+    all-in: true
+    max-safe: true
+
+# Toàn bộ chữ/icon dành riêng cho ActionBar, Title và hai bảng 3D.
+# Mã màu hỗ trợ &a, &l và hex dạng &#RRGGBB.
+display:
+  # Dùng đúng font của Native GUI để hình ⚀...⚅ giống nhau ở mọi chỗ.
+  dice-font: "minecraft:default"
+  # Đây là các ký tự dùng trong ActionBar, Title, GUI và dòng tóm tắt cầu.
+  # Nếu resource pack/font client làm mất chấm, có thể đổi thành "[1]" ... "[6]".
+  # Riêng mặt xúc xắc trên bàn 3D dùng các BlockDisplay tạo chấm thật, không phụ thuộc font.
+  dice-icons:
+    one: "⚀"
+    two: "⚁"
+    three: "⚂"
+    four: "⚃"
+    five: "⚄"
+    six: "⚅"
+    unknown: "?"
+
+  rolling-actionbar:
+    format: "&8[ %dice_1% &8│ %dice_2% &8│ %dice_3% &8]"
+    waiting: "&8?"
+    # Không thêm &l: nét đậm sẽ lấp các chấm rỗng bên trong glyph xúc xắc.
+    rolling: "&f%icon%"
+    locked: "&f%icon%"
+
+  countdown-title:
+    title: "&#FF7A7A&l%seconds%"
+    subtitle: "&7Cổng cược sắp đóng"
+
+  result-title:
+    tai: "&#FF5C5C&lTÀI"
+    xiu: "&#56C7FF&lXỈU"
+    triple: "&#C084FC&lBỘ BA"
+    subtitle: "&f%dice_1%  %dice_2%  %dice_3% &8• &7Tổng &f&l%total%"
+    triple-subtitle: "&f%dice_1%  %dice_2%  %dice_3% &8• &7Nhà cái thắng, Tài và Xỉu đều thua"
+
+  betting-3d:
+    title: "&#FF5C5C&lTÀI XỈU 3D &f• Phiên #%round% • %time%"
+    totals: "&#FF6B6B&lTÀI &f%tai_total%$ &8│ &#56C7FF&lXỈU &f%xiu_total%$"
+    limits: "&7Nhận thêm: &#FF6B6BTài %tai_max%$ &8│ &#56C7FFXỉu %xiu_max%$"
+    own-bet: "&#67E8A5Bạn đã cược %side% • %amount%$"
+    selected: "&7MỨC ĐANG CHỌN  &#F6C453&l%selection% &8• &8Ngắm vào cửa rồi nhấp chuột"
+    no-money: "&cVí hiện 0$ • Bạn cần có tiền trong Vault để đặt cược"
+    button-tai: "&#FF6B6B&lCƯỢC TÀI"
+    button-xiu: "&#56C7FF&lCƯỢC XỈU"
+    close: "&f&l×"
+
+  history-3d:
+    title: "&#F6C453&lCẦU TÀI XỈU"
+    legend: "&#FF5C5C■ TÀI     &#55C7FF■ XỈU     &#C084FC◆ BỘ BA"
+    summary: "&7PHIÊN #%round%   &f%dice_1% %dice_2% %dice_3%   &7=   %total%   %result_color%&l%result%"
+
+sounds:
+  invite: BLOCK_NOTE_BLOCK_BELL
+  countdown: BLOCK_NOTE_BLOCK_HAT
+  dice-roll: BLOCK_NOTE_BLOCK_SNARE
+  dice-lock: BLOCK_NOTE_BLOCK_PLING
+  win: ENTITY_PLAYER_LEVELUP
+  lose: BLOCK_RESPAWN_ANCHOR_DEPLETE
+  history-open: BLOCK_BEACON_ACTIVATE
+  history-point: BLOCK_NOTE_BLOCK_XYLOPHONE
+  history-complete: BLOCK_AMETHYST_BLOCK_CHIME
+  menu-open: BLOCK_BEACON_ACTIVATE
+  menu-hover: UI_BUTTON_CLICK
+  menu-click: BLOCK_NOTE_BLOCK_PLING
+  volume: 1.0
+
+messages:
+  round-open: "&#F6C453&lTÀI XỈU &8• &7Phiên &f#%round% &7đã mở &8• &#FDE68ACòn %time% &8• &f/tx"
+  actionbar: "&#FF6B6B&lTÀI &f%tai_total%$ &8│ &#F6C453%time% &8│ &#56C7FF&lXỈU &f%xiu_total%$"
+  bossbar: "&#F6C453&lTÀI XỈU &8• &fPhiên #%round% &8• &#FDE68A%time%"
+  reminder: "&#F6C453⌛ &7Phiên &f#%round% &7còn &#FDE68A%seconds% giây &7để nhận cược."
+  invalid-amount: "&#FF7A7AKhông nhận ra số tiền. &7Nhập &f100k&7, &f1m&7, &f10%&7, &fall-in &7hoặc &fmax&7."
+  already-processing: "&#F6C453Giao dịch trước đang được xử lý, vui lòng chờ."
+  betting-closed: "&#FF7A7ACổng cược đã đóng cho phiên này."
+  economy-unavailable: "&#FF7A7AHệ thống tiền đang tạm thời không khả dụng."
+  opposite-side: "&#FF7A7ABạn không thể đổi cửa trong cùng một phiên. &7Chỉ được cộng thêm vào cửa đã chọn."
+  minimum: "&#FF7A7ACược tối thiểu &f%minimum%$&7."
+  maximum: "&#FF7A7ACửa %side% hiện chỉ nhận tối đa &f%maximum%$&7."
+  insufficient-money: "&#FF7A7ASố dư của bạn không đủ cho mức cược này."
+  withdraw-failed: "&#FF7A7AKhông thể trừ tiền. &7Số dư của bạn vẫn được giữ nguyên."
+  internal-error: "&#FF7A7AKhông thể lưu cược. &7Tiền đã được hoàn lại đầy đủ."
+  refund-failed: "&#FF7A7AKhông thể hoàn tiền giao dịch lỗi. &7Vui lòng báo quản trị viên để đối soát."
+  bet-success: "&#67E8A5✔ &7Đã cược &f%amount%$ &7vào &#F8FAFC%side% &8• &7Thắng nhận &#67E8A5%payout%$"
+  bet-added: "&#67E8A5✔ &7Đã cộng &f%added%$ &7vào &#F8FAFC%side% &8• &7Tổng cược &f%amount%$"
+  win: "&#67E8A5&lTHẮNG &8• &7Phiên &f#%round% &8• &7Thực nhận &#67E8A5%payout%$ &8(&7thuế %tax%$&8)"
+  lose: "&#FF7A7A&lTHUA &8• &7Phiên &f#%round% &8• &7Khoản cược &f%amount%$ &7đã được xử lý."
+  triple-loss: "&#FF7A7A&lTHUA &8• &7Phiên &f#%round% &8• &f%dice_raw% &7là bộ ba: nhà cái thắng, cả Tài và Xỉu đều thua. &7Bạn mất &f%amount%$&7."
+  triple-announcement: "&#C084FC&lBỘ BA &8• &7Phiên &f#%round% &8• &f%dice_raw% &8(&7tổng %total%&8) &8• &7Nhà cái thắng, cả Tài và Xỉu đều thua."
+  payout-pending: "&#F6C453Phần thưởng phiên #%round% đang chờ economy và sẽ tự động trả lại."
+  cancelled: "&#F6C453Phiên #%round% đã hủy &8• &f%amount%$ &7đã được hoàn lại."
+
+announcements:
+  enabled: true
+
+gui:
+  # auto/native: Native Dialog nếu có; inventory khi chưa có API.
+  # inventory: rương; 3d: bàn cược. Chữ/kích thước Native GUI trong gui.yml.
+  mode: auto
+  bedrock-forms: true

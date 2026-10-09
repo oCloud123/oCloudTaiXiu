@@ -1,0 +1,43 @@
+title: "TÀI XỈU"
+native:
+  columns: 2
+  button-width: 150
+  body-width: 360
+  input-width: 260
+  input-max-length: 24
+  amount-label: "Số tiền: 100k, 1m, 10%, all-in hoặc max"
+buttons:
+  tai: "CƯỢC TÀI"
+  xiu: "CƯỢC XỈU"
+  table: "BÀN CƯỢC 3D"
+  history: "CẦU 3D"
+  stats: "THỐNG KÊ"
+  refresh: "LÀM MỚI"
+  confirm: "XÁC NHẬN"
+  back: "QUAY LẠI"
+confirm:
+  title: "XÁC NHẬN CƯỢC"
+  amount: "Cửa %side%: %amount%$"
+  warning: "Cược đã xác nhận không thể rút hoặc đổi cửa."
+main:
+  round: "PHIÊN #%round%  •  %state%"
+  tai: "TÀI  "
+  xiu: "XỈU  "
+  balance: "Số dư khả dụng  "
+  limits: "Nhận thêm  "
+  own-bet: "Cược của bạn  "
+  instruction: "Chọn một cửa bên dưới. Cược đã xác nhận không thể đổi hoặc rút."
+  last-result: "Kết quả gần nhất  "
+stats:
+  title: "THỐNG KÊ TÀI XỈU"
+  achievement: "THÀNH TÍCH"
+  played: "Đã chơi  "
+  win-rate: "Tỷ lệ thắng  "
+  cash-flow: "DÒNG TIỀN"
+  total-bet: "Tổng đã cược  "
+  total-payout: "Tổng đã nhận  "
+  profit: "Lãi ròng  "
+  explanation: "Lãi ròng = tổng thực nhận − tổng tiền đã cược."
+inventory:
+  # Danh sách phân cách bởi dấu phẩy, nhấp vào mức tiền để đổi.
+  amounts: "100k,500k,1m,10%,25%,50%,all-in,max"

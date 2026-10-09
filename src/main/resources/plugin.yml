@@ -1,0 +1,21 @@
+name: oCloudTaiXiu
+version: '${version}'
+main: com.ocloud.taixiu.OCloudTaiXiuPlugin
+api-version: '1.21'
+folia-supported: true
+description: Tài Xỉu độc lập, nhà cái không giới hạn quỹ.
+authors: [oCloud]
+softdepend: [Vault, Essentials, floodgate, Geyser-Spigot, ViaVersion]
+commands:
+  taixiu:
+    aliases: [tx]
+    description: Mở Tài Xỉu hoặc quản lý phiên.
+    permission: ocloudtaixiu.use
+permissions:
+  ocloudtaixiu.use:
+    default: true
+  ocloudtaixiu.admin:
+    default: op
+  ocloudtaixiu.setnext:
+    default: op
+    description: Đặt kết quả phiên nhận cược tiếp theo.
